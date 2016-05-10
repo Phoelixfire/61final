@@ -83,7 +83,7 @@ void arraytwo() {  //array 1 show
   float ce = .2;  //color change speed
   background(cr, cg, cb);  //sky color change
   fill(255);
-  text( "Array 1", 500, 20 );
+  text( "Array 2", 500, 20 );
   rectMode(CORNER);   
   noStroke();
   fill(15, 149, 76);   //platform color

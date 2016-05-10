@@ -155,7 +155,7 @@ class Constellation {
   float  r, g, b, hr, hg, hb;
   String name="?";
   int salary;
-  float raise;
+  int raise;
 
   Constellation (String names) {
     r= random(255);
@@ -175,11 +175,13 @@ class Constellation {
       salary = int(0);
     }
     if (salary <= 25000) {
-      raise= salary + salary * .20;
+      raise= int(salary + salary * .20);
     } else if (salary > 25000 && salary < 50000) {
-      raise= salary + salary * .15;
+      raise= int(salary + salary * .15);
     } else if (salary >= 50000 && salary < 75000) {
-      raise= salary + salary * .10;
+      raise= int(salary + salary * .10);
+    } else if (salary >= 7500) {
+      raise = salary;
     }
     raise = int(raise);
     
@@ -224,6 +226,97 @@ class Constellation {
   }
 }
 
+
+
+
+
+class Worker {
+  float w, h;
+  int age;
+  float  r, g, b, hr, hg, hb;
+  String name="?";
+  int salary;
+  int raise;
+  
+
+
+  Worker (String people) {
+    r= random(255);
+    g= random(255);
+    b= random(255);
+    hr= random(255);
+    hg= random(255);
+    hb= random(255);
+    w=  random(20, 40);
+    h=  random(30, 150);
+    name = people;
+
+    age = int(h/2);
+    if (age >=18) {
+      salary = int(random(1000, 100000));
+    } else { 
+      salary = int(0);
+    }
+
+    if (salary <= 25000) {
+      raise= int(salary + salary * .20);
+    } else if (salary > 25000 && salary < 50000) {
+      raise= int(salary + salary * .15);
+    } else if (salary >= 50000 && salary < 75000) {
+      raise= int(salary + salary * .10);
+    } else if (salary >= 7500) {
+      raise = salary;
+    }
+  raise = int(raise);
+    println(raise);
+  }
+
+  void show( float x, float y) {
+    int bonus= salary * int(1+(25/100));
+    fill(r, g, b);
+    rectMode(CENTER);
+    rect( x, y-h/2, w, h );  //body
+    text ( name, x, y+20);
+    int feet, inches;
+    feet=  int( h / 12 );
+    inches=  int( h % 12 );
+    text ( feet+"' " + inches+"''", x, y+35);
+    float lb=  (h * w * w) / 500 ;
+    text ( int(lb())+"lb", x, y+50);
+    head( x, (y-h)-(h/3)/2, h/3 );
+    text (age+"yrs", x, y+65);
+    text ("$"+salary, x, y+80);
+  }
+  void head( float x, float hY, float hH ) {
+    ellipse( x, hY, hH, hH );  //head
+    fill( 255, 255, 255 );
+    ellipse( x, hY+6, w/4, h/10 );   //mouth
+    fill(0);
+    rect(x, hY -(hH/2), hH-(hH/3), 5);    //top hat
+    rectMode(CORNER);
+    rect(x-hH/4, hY -hH, hH-(hH/2), hH-hH/2);
+    rectMode(CENTER);
+    fill(255);
+    rect( x-6, hY-6, 8, 12 );   //left eye
+    fill(0, 0, 255);
+    ellipse( x-6, hY-6, 4, 5 );
+    fill(255);
+    rect( x+6, hY-6, 8, 12 );   //right eye
+    fill(0, 0, 255);
+    ellipse( x+6, hY-6, 4, 5 );
+  }
+
+
+  float lb() {
+    return (h * w * w) / 500 ;
+  }
+}
+
+
+
+
+
+
 void bonus() {  //function for the bonus
  int bonus = 1000;
   a.salary = a.salary + bonus;
@@ -254,6 +347,33 @@ void bonus() {  //function for the bonus
 }
 
 
+void raise() {
+  a.salary = a.raise;
+  b.salary = b.raise;
+  c.salary = c.raise;
+  d.salary = d.raise;
+  e.salary = e.raise;
+  f.salary = f.raise;
+  g.salary = g.raise;
+  h.salary = h.raise;
+  i.salary = i.raise;
+  j.salary = j.raise;
+  k.salary = k.raise;
+  l.salary = l.raise;
+  m.salary = m.raise;
+  n.salary = n.raise;
+  aa.salary = aa.raise;
+  bb.salary = bb.raise;
+  cc.salary = cc.raise;
+  dd.salary = dd.raise;
+  ee.salary = ee.raise;
+  ff.salary = ff.raise;
+  gg.salary = gg.raise;
+  hh.salary = hh.raise;
+  ii.salary = ii.raise;
+  jj.salary = jj.raise;
+  kk.salary = kk.raise;
+}
 
 
 
@@ -492,7 +612,7 @@ void buttons() {
 
 void mousePressed() {
   if ( buttons[0].click(mouseX, mouseY) ) { 
-    
+    raise();
     return;
   }
 
@@ -532,88 +652,6 @@ void mousePressed() {
   }
 }
 
-
-
-
-class Worker {
-  float w, h;
-  int age;
-  float  r, g, b, hr, hg, hb;
-  String name="?";
-  int salary;
-  float raise;
-  
-
-
-  Worker (String people) {
-    r= random(255);
-    g= random(255);
-    b= random(255);
-    hr= random(255);
-    hg= random(255);
-    hb= random(255);
-    w=  random(20, 40);
-    h=  random(30, 150);
-    name = people;
-
-    age = int(h/2);
-    if (age >=18) {
-      salary = int(random(1000, 100000));
-    } else { 
-      salary = int(0);
-    }
-
-    if (salary <= 25000) {
-      raise= salary + salary * .20;
-    } else if (salary > 25000 && salary < 50000) {
-      raise= salary + salary * .15;
-    } else if (salary >= 50000 && salary < 75000) {
-      raise= salary + salary * .10;
-    }
-  raise = int(raise);
-    println(raise);
-  }
-
-  void show( float x, float y) {
-    int bonus= salary * int(1+(25/100));
-    fill(r, g, b);
-    rectMode(CENTER);
-    rect( x, y-h/2, w, h );  //body
-    text ( name, x, y+20);
-    int feet, inches;
-    feet=  int( h / 12 );
-    inches=  int( h % 12 );
-    text ( feet+"' " + inches+"''", x, y+35);
-    float lb=  (h * w * w) / 500 ;
-    text ( int(lb())+"lb", x, y+50);
-    head( x, (y-h)-(h/3)/2, h/3 );
-    text (age+"yrs", x, y+65);
-    text ("$"+salary, x, y+80);
-  }
-  void head( float x, float hY, float hH ) {
-    ellipse( x, hY, hH, hH );  //head
-    fill( 255, 255, 255 );
-    ellipse( x, hY+6, w/4, h/10 );   //mouth
-    fill(0);
-    rect(x, hY -(hH/2), hH-(hH/3), 5);    //top hat
-    rectMode(CORNER);
-    rect(x-hH/4, hY -hH, hH-(hH/2), hH-hH/2);
-    rectMode(CENTER);
-    fill(255);
-    rect( x-6, hY-6, 8, 12 );   //left eye
-    fill(0, 0, 255);
-    ellipse( x-6, hY-6, 4, 5 );
-    fill(255);
-    rect( x+6, hY-6, 8, 12 );   //right eye
-    fill(0, 0, 255);
-    ellipse( x+6, hY-6, 4, 5 );
-  }
-
-
-  float lb() {
-    return (h * w * w) / 500 ;
-  }
-}
 
 
 class Button {
@@ -673,6 +711,5 @@ void keyPressed() {
   if (key == 'o') older();
   if (key == '3') yt++;
   if (key == '2') bonus();
-
+  if (key == '1') raise();
 }
-

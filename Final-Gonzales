@@ -1,5 +1,5 @@
 //Felix Gonzales
-String people[]= {  
+String people[]= {   //names of people in array 2
   "John", "Josh", 
   "Zyra", "Jenny", "Carol", "Shari", "Shirley", "Rick", 
   "Kevin", "Joey", "Brian"
@@ -8,7 +8,7 @@ Worker aa, bb, cc, dd, ee, ff, gg, hh, ii, jj, kk;
 
 
 
-String names[]= { 
+String names[]= {   //names of people in array 1
   "Aries", "Cancer", "Draco", "Hercules", "Hydra", 
   "Lyra", "Orion", "Pegasus", "Phoenix", "Taurus", "Virgo", 
   "Serpens", "Pisces", "Octans"
@@ -35,7 +35,7 @@ void setup() {
 
 void draw() {
 
-  if ((yt & 1) == 0) {
+  if ((yt & 1) == 0) {   //if yt is odd then show array 1, if even then show array 2
     arrayone();
   } else {
     arraytwo();
@@ -44,18 +44,19 @@ void draw() {
 }
 
 
-
-void arrayone() {  
+void arrayone() {     //array 1 show
   float xd;
   float ce = .2;  //color change speed
   background(70, cg, cb);
+  fill(255);
+  text( "Array 1", 500, 20 );
   rectMode(CORNER);
   noStroke();
   fill(15, 149, 76);
   rect(0, 400, width, 200);   //platform
-  if (cg >= 255 ) cg= 100;    //sky color change
+  if (cg >= 255 ) cg= 100;    //color reset
   if (cb >= 255 ) cb =100;
-  cb= cb + ce;
+  cb= cb + ce;   //sky color change
   cg= cg + ce;
   fill(255);
   text("CST 112 Felix Gonzales", 600, 510);
@@ -77,15 +78,17 @@ void arrayone() {
   n.show(700, 400);
 }
 
-void arraytwo() {  
+void arraytwo() {  //array 1 show
   float xd;
   float ce = .2;  //color change speed
   background(cr, cg, cb);  //sky color change
+  fill(255);
+  text( "Array 1", 500, 20 );
   rectMode(CORNER);   
   noStroke();
   fill(15, 149, 76);   //platform color
   rect(0, 400, width, 200);   //platform
-  if (cg >= 255 ) cg= 50;
+  if (cg >= 255 ) cg= 50;  //color reset
   if (cr >= 255 ) cr =50;
   cr= cr + ce;
   cg= cg + ce;
@@ -107,13 +110,16 @@ void arraytwo() {
 }
 
 
-void texts() {    //guide
+void texts() {    //guide. shows texts
   fill(255);
   text( "r = reset.", 10, 12 );
   text( "t = move tallest to the end", 10, 24 );
   text( "w = move thickest to the end.", 10, 36 );
   text( "o = everyone gains 1 year.", 10, 48 );
   text( "q = quit.", 10, 60 );
+  text( "1 = give 1 time raise",10,72);
+  text( "2 = give bonus of $1000", 10, 84);
+  text( "3 = switch array", 10, 96);
 }
 
 void groupone() {  //for first array
@@ -149,7 +155,7 @@ void grouptwo() {  //for second array
 }
 
 
-class Constellation {
+class Constellation {   //Class for Array # 1
   float w, h;
   int age;
   float  r, g, b, hr, hg, hb;
@@ -157,7 +163,7 @@ class Constellation {
   int salary;
   int raise;
 
-  Constellation (String names) {
+  Constellation (String names) {  //constructor
     r= random(255);
     g= random(255);
     b= random(255);
@@ -174,7 +180,7 @@ class Constellation {
     } else { 
       salary = int(0);
     }
-    if (salary <= 25000) {
+    if (salary <= 25000) {   //shows formula for raise
       raise= int(salary + salary * .20);
     } else if (salary > 25000 && salary < 50000) {
       raise= int(salary + salary * .15);
@@ -187,7 +193,7 @@ class Constellation {
     
   }
 
-  void show( float x, float y) {
+  void show( float x, float y) {   //shows under people in array 1
     fill(r, g, b);
     rectMode(CENTER);
     ellipse( x, y-h/2, w, h );  //body
@@ -195,14 +201,14 @@ class Constellation {
     int feet, inches;
     feet=  int( h / 12 );
     inches=  int( h % 12 );
-    text ( feet+"' " + inches+"''", x, y+35);
+    text ( feet+"' " + inches+"''", x, y+35);   //height text
     float lb=  (h * w * w) / 500 ;
-    text ( int(lb())+"lb", x, y+50);
+    text ( int(lb())+"lb", x, y+50);   //pounds text
     head( x, (y-h)-(h/3)/2, h/3 );
-    text (age+"yrs", x, y+65);
-    text ("$"+salary, x, y+80);
+    text (age+"yrs", x, y+65);   //years text
+    text ("$"+salary, x, y+80);  //salary text
   }
-  void head( float x, float hY, float hH ) {
+  void head( float x, float hY, float hH ) {  //head of people
     rect( x, hY, hH, hH );  //head
     fill( 255, 255, 255 );
     ellipse( x, hY+6, w/4, h/10 );   //mouth
@@ -221,7 +227,7 @@ class Constellation {
   }
 
 
-  float lb() {
+  float lb() {   //formula for pounds
     return (h * w * w) / 500 ;
   }
 }
@@ -230,7 +236,7 @@ class Constellation {
 
 
 
-class Worker {
+class Worker {   //array # 2
   float w, h;
   int age;
   float  r, g, b, hr, hg, hb;
@@ -251,14 +257,14 @@ class Worker {
     h=  random(30, 150);
     name = people;
 
-    age = int(h/2);
-    if (age >=18) {
-      salary = int(random(1000, 100000));
+    age = int(h/2);  //formula for age
+    if (age >=18) {   
+      salary = int(random(1000, 100000));   //formual for salary
     } else { 
       salary = int(0);
     }
 
-    if (salary <= 25000) {
+    if (salary <= 25000) {      //formula for raise
       raise= int(salary + salary * .20);
     } else if (salary > 25000 && salary < 50000) {
       raise= int(salary + salary * .15);
@@ -267,25 +273,25 @@ class Worker {
     } else if (salary >= 7500) {
       raise = salary;
     }
-  raise = int(raise);
-    println(raise);
+    
+    
   }
 
-  void show( float x, float y) {
+  void show( float x, float y) {   //shows under people in array # 2
     int bonus= salary * int(1+(25/100));
     fill(r, g, b);
     rectMode(CENTER);
     rect( x, y-h/2, w, h );  //body
-    text ( name, x, y+20);
+    text ( name, x, y+20);  //name display
     int feet, inches;
     feet=  int( h / 12 );
     inches=  int( h % 12 );
-    text ( feet+"' " + inches+"''", x, y+35);
+    text ( feet+"' " + inches+"''", x, y+35);  //shows height of people
     float lb=  (h * w * w) / 500 ;
-    text ( int(lb())+"lb", x, y+50);
+    text ( int(lb())+"lb", x, y+50);   //shows weight of people
     head( x, (y-h)-(h/3)/2, h/3 );
-    text (age+"yrs", x, y+65);
-    text ("$"+salary, x, y+80);
+    text (age+"yrs", x, y+65);   //shows year of people
+    text ("$"+salary, x, y+80);  //shows salary of people
   }
   void head( float x, float hY, float hH ) {
     ellipse( x, hY, hH, hH );  //head
@@ -307,17 +313,13 @@ class Worker {
   }
 
 
-  float lb() {
+  float lb() {   //formula for pounds
     return (h * w * w) / 500 ;
   }
 }
 
 
-
-
-
-
-void bonus() {  //function for the bonus
+void bonus() {  //formula for the bonus
  int bonus = 1000;
   a.salary = a.salary + bonus;
   b.salary = b.salary + bonus;
@@ -347,7 +349,7 @@ void bonus() {  //function for the bonus
 }
 
 
-void raise() {
+void raise() {   //formual for raise
   a.salary = a.raise;
   b.salary = b.raise;
   c.salary = c.raise;
@@ -376,14 +378,11 @@ void raise() {
 }
 
 
-
-
-
 void older() {
   if ((yt & 1) == 0) {  //this makes sure that the buttons only work for the array that is currently showing
     a.age = a.age+1; 
     if (a.age > 100) a = new Constellation(names[0]);  //will cause new person to spawn once they reach 100
-    b.age = b.age+1;
+    b.age = b.age+1;                                   //will add a year to the age
     if (b.age > 100) b = new Constellation(names[1]);
     c.age = c.age+1;
     if (c.age > 100) c = new Constellation(names[2]);
@@ -409,7 +408,7 @@ void older() {
     if (m.age > 100) m = new Constellation(names[12]);
     n.age = n.age+1;
     if (n.age > 100) n = new Constellation(names[13]);
-  } else {
+  } else {              //this makes sure that the buttons only work for the array that is currently showing
     aa.age = aa.age+1; 
     if (aa.age > 100) aa = new Worker(names[0]);  //will cause new person to spawn once they reach 100
     bb.age = bb.age+1;
@@ -436,7 +435,7 @@ void older() {
 }
 
 
-void tallest() {  //i did it this way as i understand it a bit better than the shorter way
+void tallest() {  //*********i did it this way as i understand it a bit better than the shorter way***********
   if ((yt & 1) == 0) {  //this makes sure that the buttons only work for the array that is currently showing
     Constellation tmp=  n;
     if (a.h>b.h && a.h>c.h && a.h>d.h && a.h>e.h && a.h>f.h && a.h>g.h && a.h>h.h && a.h>i.h && a.h>j.h && a.h>k.h
@@ -602,7 +601,7 @@ void thickest() {
 
 
 
-void buttons() {
+void buttons() {  //array of buttons
   for (int j=0; j<buttonNames.length; j++) {
     buttons[j].show();
   }
@@ -610,30 +609,30 @@ void buttons() {
 
 
 
-void mousePressed() {
-  if ( buttons[0].click(mouseX, mouseY) ) { 
+void mousePressed() {   //mouse pressed actions
+  if ( buttons[0].click(mouseX, mouseY) ) { //to apply raise
     raise();
     return;
   }
 
-  if ( buttons[1].click(mouseX, mouseY) ) { 
+  if ( buttons[1].click(mouseX, mouseY) ) { //to apply bonus
     bonus();
     return;
   }
 
-  if ( buttons[2].click(mouseX, mouseY) ) { 
+  if ( buttons[2].click(mouseX, mouseY) ) { //to add age
     older();
     return;
   }
-  if ( buttons[3].click(mouseX, mouseY) ) { 
+  if ( buttons[3].click(mouseX, mouseY) ) { //to switch arrays
     yt++;
     return;
   }
-  if ( buttons[4].click(mouseX, mouseY) ) { 
+  if ( buttons[4].click(mouseX, mouseY) ) { //to move thickest to the last place
     thickest();  
     return;
   }
-  if ( buttons[5].click(mouseX, mouseY) ) { 
+  if ( buttons[5].click(mouseX, mouseY) ) { //to move tallest to the last place
     tallest();
     ;
     return;
@@ -646,7 +645,7 @@ void mousePressed() {
     } 
     return;
   }
-  if ( buttons[7].click(mouseX, mouseY) ) { 
+  if ( buttons[7].click(mouseX, mouseY) ) { //to quit
     exit(); 
     return;
   }
@@ -654,26 +653,26 @@ void mousePressed() {
 
 
 
-class Button {
+class Button {   //class for buttons
   float x, y;
   float w=60, h=30;  //width & height of buttons
   String name;
   float r=random(255), g=random(255), b=random(255);  //colors of buttons
 
-  Button( float x, float y, String s ) {
+  Button( float x, float y, String s ) { //constructor
     this.x=x;
     this.y=y;
     this.name=  s;
   }
 
-  void show() {
+  void show() {  //creating button
     noStroke();
     fill(r, g, b);
     rect( x+40, y+15, w, h );
     fill(0);
     text( name, x+45, (y+h*2/3)+20 );
   }
-  boolean click( float mX, float mY ) {
+  boolean click( float mX, float mY ) {   //range of click for button to work
     if (mX < x+40)   return false;
     if (mX > x+w+40) return false;
     if (mY < y+15)   return false;
@@ -682,7 +681,7 @@ class Button {
   }
 }
 
-void makebuttons() {
+void makebuttons() {   //array of buttons
   buttons=  new Button[numButtons];
   float x=10, y=500;
   for (int j=0; j<numButtons; j++ ) {
@@ -692,12 +691,7 @@ void makebuttons() {
 }
 
 
-
-
-
-
-
-void keyPressed() {
+void keyPressed() {  //keyPressed functions
   if (key == 'q') exit();
   if (key == 'r') { 
     if ((yt & 1) == 0) {
@@ -706,10 +700,10 @@ void keyPressed() {
       grouptwo();
     }
   }
-  if (key == 't') tallest();
-  if (key == 'w') thickest();
-  if (key == 'o') older();
-  if (key == '3') yt++;
-  if (key == '2') bonus();
-  if (key == '1') raise();
+  if (key == 't') tallest();   //move tallest to end
+  if (key == 'w') thickest();  //move thickest to end
+  if (key == 'o') older();     //add a year to age
+  if (key == '3') yt++;        //switch arrays
+  if (key == '2') bonus();     //apply bonus  
+  if (key == '1') raise();     //apply raise
 }
